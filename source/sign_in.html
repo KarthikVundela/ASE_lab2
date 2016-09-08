@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New User?</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="application/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <nav class="navbar navbar-light" >
+<div class="container-fluid">
+   <div class="navbar-header">
+   <a class="navbar-brand" href="/Users/KARTHIK/Desktop/map.html"><font color="black">Home</font></a>
+ </div>
+     <ul class="nav navbar-nav">
+       <li><a href="/Users/KARTHIK/Desktop/sign_in.html"><font color="black">signin</font></a></li>
+         <li><a href="/Users/KARTHIK/Desktop/sing_up.html"><font color="black">signup</font></a></li>
+     </ul>
+   </div>
+ </nav>
+    </head>
+    <body>
+    <div ng-app="login" ng-controller="LoginController">
+    
+    <div class="login" align="center"></div><br/>
+    <form align="center" action="/Users/KARTHIK/Desktop/Display_page.html">
+   <div class="input">
+       <p>signin:</p>
+       <input ng-model="Name" placeholder="Username">
+    <br/><br/>
+    <input ng-model="pwd" type="password" placeholder="Password">
+    <br/><br/>
+    <input type="submit" ng-click="login(Name, pwd)" value="Login" class="btn btn-primary">
+    <br/><br/>
+</div>
+        </form>
+<div ng-repeat="login in logins"></div>
+
+</div> 
+      <script>
+          var app = angular.module("login", []);
+       .controller("LoginController", function($scope){
+      
+    $scope.logins = [];
+    $scope.login = function (user_, pwd_) {
+        localStorage.setItem("name", user_);
+        localStorage.setItem("pwd", pwd_);
+      
+        $scope.logins.push(localStorage.getItem("name") + " was logged in.");
+        $scope.logins.push(localStorage.getItem("pwd") + " this is my pwd used to logged in.");
+        
+      
+        
+    };
+});
+</script>  
+    </body>
+</html>
+ 
+    

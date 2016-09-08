@@ -1,0 +1,78 @@
+<! DOCTYPE html>
+<html>
+    <head>
+<title>Weather</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="application/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <style>
+        
+     .weatherModule {
+  background: #f2f2f2;
+  height: 150px;
+  width: 250px;
+  border: 1px #red;
+  padding: 1em;
+}
+
+
+        </style>
+        <nav class="navbar navbar-light">
+<div class="container-fluid">
+   <div class="navbar-header">
+   <a  class="navbar-brand" href="/Users/KARTHIK/Desktop/maps.html"><font color="black">My location</font></a>
+ </div>
+     <ul class="nav navbar-nav">
+       <li><a href="/Users/KARTHIK/Desktop/directions.html"><font color="black">Give Directions</font></a></li>
+       <li><a href="/Users/KARTHIK/Desktop/weather.html"><font color="black">weather</font></a></li>
+         <li><a href="/Users/KARTHIK/Desktop/sign_in.html"><font color="black">signout</font></a></li>
+     </ul>
+   </div>
+ </nav>
+    </head>
+    
+    <body>
+        <div ng-app="weather" ng-controller="myctrl" align="center">
+  <button id="btn" ng-click="getWeather()" align="center"> Show Weather </button>
+  <br/>
+  <br/>
+  <div class="weatherModule">
+    <p class="currentConditions" ng-bind="currentweather.html"></p>
+    <div class="currentIcon" ng-bind="currentIcon.html"></div>
+  </div>
+</div>
+
+<script>
+            
+var app = angular.module('weather', [])
+  .controller('myctrl', function($scope, $http) {
+    $scope.getWeather = function() {
+      $http.get('https://api.wunderground.com/api/36b799dc821d5836/conditions/q/MO/Kansas%20City.json').success(function(data) {
+        console.log(data);
+        temp = data.current_observation.temp_f;
+        icon = data.current_observation.icon_url;
+        weather = data.current_observation.weather;
+        
+        city = data.current_observation.display_location.city;
+        
+        console.log(temp);
+        $scope.currentweather = {
+          html: "Currently the temperature in "+city+"  is " + temp + " &deg; F and " + weather
+        }
+        $scope.currentIcon = {
+          html: "<img src='" + icon + "'/>"
+        }
+
+      })
+    }
+
+  });
+
+
+        
+
+        </script>
+    </body>
+</html>

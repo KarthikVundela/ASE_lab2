@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New User?</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" type="application/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+           
+        <nav class="navbar navbar-light">
+<div class="container-fluid">
+   <div class="navbar-header">
+   <a class="navbar-brand" href="/Users/KARTHIK/Desktop/map.html"><font color="black">Home</font></a>
+ </div>
+     <ul class="nav navbar-nav">
+       <li><a href="/Users/KARTHIK/Desktop/sign_in.html"><font color="black">signin</font></a></li>
+         <li><a href="/Users/KARTHIK/Desktop/sing_up.html"><font color="black">signup</font></a></li>
+     </ul>
+   </div>
+ </nav>
+    </head>
+    <body>
+    <div id="login" class="sign-up"  ng-controller="myCtrl">
+       <p align="center">sign up:</p>
+        <form ng-app=""  name="myform" align="center">
+        <input type="text" placeholder="username" ng-model="name">
+            <br/><br/>
+            
+        <input type="email" name="Address" placeholder="id" ng-model="email">
+        <br/><br/>
+            <input type="password" placeholder="password" ng-model="pwd">
+            
+            <br/><br/>
+    <input class="btn btn-primary" type="submit" ng-click="reg(name,email,pwd)" value="Register">
+            <input class="btn btn-danger" type="reset" value="Clear">
+     </form>
+        
+        </div>
+        
+        
+        <script>
+            var app = angular.module("", []);
+        .controller("myCtrl", function($scope){
+            
+            $scope.logins = [];
+            $scope.reg = function(user1, mail1, pwd1){
+            localStorage.setItem("name",user1);
+            localStorage.setItem("email",mail1);
+            localStorage.setItem("password",pwd1);
+                $scope.logins.push(localStorage.getItem("name"));
+                $scope.logins.push(localStorage.getItem("email"));
+                $scope.logins.push(localStorage.getItem("password"));       
+            };
+        });
+        </script>
+    </body>
+</html>
